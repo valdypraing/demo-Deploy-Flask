@@ -5,7 +5,7 @@ WORKDIR /app
 RUN pip3 install -r requirements.txt
 
 
-CMD ["python", "main.py"]
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --chdir app app:app
 
 EXPOSE 8080
 
